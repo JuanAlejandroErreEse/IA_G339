@@ -16,4 +16,6 @@ git commit -m "nombre el commmit"
 ## comandos de python
 comando | descripción
 pip list|Lista las librerias instaladas
-python -m venv|
+python -m venv "nombre de entorno"| crear el entorno virtual
+
+set-ExecutionPolicy Unrestricted

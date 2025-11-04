@@ -1,5 +1,15 @@
-<style>
-    <h1>blue</h1>
-    <h2>red</h2>
-    <h3>green</h3>
-</style>
+body {
+    background-color: rgb(101, 220, 244);
+}
+
+h1 {
+    color: blue;
+}
+
+h2 {
+    color: green;
+}
+
+h3 {
+    color: orange;
+}
