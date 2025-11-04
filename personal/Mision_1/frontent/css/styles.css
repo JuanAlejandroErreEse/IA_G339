@@ -1,5 +1,38 @@
-body {
+/* body {
     background-color: rgb(101, 220, 244);
+} */
+ /*resetear estilos */
+ *{
+    margin: 0;
+    padding: 0;
+ }
+
+ header{
+    background-color: rgb(24, 2, 77);
+    color: white;
+    padding: 20px;
+    text-align: center;
+
+ }
+
+ nav ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+
+}
+    
+nav ul li a{
+    color: white;
+    text-decoration:none;
+    font: bold;
+}
+    
+
+
+nav ul li{
+    margin: 0 15px;
 }
 
 h1 {
@@ -12,4 +45,9 @@ h2 {
 
 h3 {
     color: orange;
+}
+
+.miestilo{
+    color:rgb(2, 2, 225);
+
 }
