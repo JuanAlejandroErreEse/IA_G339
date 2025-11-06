@@ -19,3 +19,8 @@ pip list|Lista las librerias instaladas
 python -m venv "nombre de entorno"| crear el entorno virtual
 
 set-ExecutionPolicy Unrestricted
+
+```
+|print("hola mundo")
+```
+asi se escribe dentro del markdown para diferenciar codigo de trexto normal
