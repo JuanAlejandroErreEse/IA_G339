@@ -1,0 +1,76 @@
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+
+def buid_and_train_model(train_pairs):
+    questions = [q for q, _ in train_pairs]
+    answers = [ a for _, a in train_pairs]
+    vectorizer = CountVectorizer()
+    x=vectorizer.fit_transform(questions)
+
+    unique_answers = sorted(set(answers))
+    answer_to_label= {a:i for i,a in enumerate(unique_answers)}
+    y = [answer_to_label[a] for a in answers]
+    model = MultinomialNB()
+    model.fit(x,y)
+    return model, vectorizer, unique_answers
+def predict_answer(model, vectorizer, unique_answers, user_text):
+    x = vectorizer.transform([user_text])
+    label = model.predict(x)[0]
+    return unique_answers[label]
+if __name__ == "__main__":
+    training_data = [
+        ("hola","¡Hola! Bienvenido a [Subliminal Personalizados], especialistas en estampados e impresión digital. ¿En qué puedo ayudarte hoy?"),
+        ("como estás","Estoy Bien, gracias por preguntar"),
+        ("Tu nombre","Soy un chatbot de ejemplo, pero me puedes llamar charlaia"),
+        ("con quien hablo","Soy un chatbot de ejemplo, pero puedo ayudarete en cualquier tarea que requieras"),
+        ("buenos días","¡Buenos días! Gracias por comunicarte con [subliminal Personalizados]. ¿en q    ue podemos ayudarte?"),
+        ("buenas tardes","¡Buenas tardes! Será un gusto ayudarte con tus pedidos de impresión o estampado."),
+        ("buenas noches","¡Buenas noches! Gracias por contactarnos, cuéntame, ¿qué tipo de servicio necesitas?"),
+        ("como estás","Estoy muy bien, gracias por preguntar. ¿Cómo puedo ayudarte el dia de hoy?"),
+        ("que hacen","Nos especializamos en estampados personalizados, sublimación, vinilos, souvenires personalizados e impresión digital de alta calidad."),
+        ("qué servicios ofrecen","Ofrecemos servicios de impresión digital, sublimación, estampado textil, vinilos y personalización de productos."),
+        ("dónde están ubicados","Nuestra tienda se encuentra en [calle 29 #23-37 subt, a una cuadra del parque caldas]. También atendemos pedidos en línea."),
+        ("cuál es su ubicacion","Nuestra tienda se encuentra en [calle 29 #23-37 subt, a una cuadra del parque caldas]."),
+        ("cuál es su horario","Atendemos de lunes a viernes de 9:00 a.m. a 6:00 p.m., y los sábados de 9:00 a.m. a 2:00 p.m."),
+        ("qué tipo de productos imprimen","Imprimimos en camisetas, gorras, tazas, bolsas, termos, llaveros y muchos artículos más."),
+        ("hacen envios","¡Sí! Realizamos envíos a todo el país con servicio seguro y seguimiento de entrega."),
+        ("cuánto cuesta una camiseta estampada","El precio depende del diseño, cantidad y tipo de tela. Podemos ofrecerte una cotización personalizada."),
+        ("cómo puedo hacer un pedido","Puedes hacer tu pedido enviándonos tu diseño por WhatsApp, correo electrónico subliminalpersonaliza@gmail o a través de nuestra página web."),
+        ("qué formatos de archivo aceptan","Aceptamos formatos JPG, PNG, PDF, y AI. Si tienes otro formato, podemos ayudarte a adaptarlo."),
+        ("hacen trabajos personalizados","¡Claro! Realizamos trabajos 100% personalizados según tus ideas o diseños."),
+        ("puedo llevar mi propio diseño","Por supuesto, puedes enviarnos tu diseño y nosotros lo adaptamos para la impresión."),
+        ("cuál es el tiempo de entrega","El tiempo de entrega varía según el tipo de trabajo, generalmente entre 2 y 5 días hábiles."),
+        ("hacen descuentos por mayoreo","¡Sí! Ofrecemos precios especiales para pedidos al por mayor o corporativos."),
+        ("imprimen en telas oscuras","Sí, contamos con técnicas de impresión adecuadas para telas oscuras y claras."),
+        ("qué métodos de pago aceptan","Aceptamos pagos en efectivo, transferencia bancaria y tarjetas de crédito o débito."),
+        ("cómo puedo contactarlos","Puedes comunicarte con nosotros por WhatsApp, correo electrónico o en nuestras redes sociales."),
+        ("puedo ver ejemplos de su trabajo","¡Por supuesto! Puedes visitar nuestra galería en redes sociales o en nuestra página web."),
+        ("tienen atención a empresas","Sí, trabajamos con empresas para uniformes, regalos corporativos y productos promocionales."),
+        ("realizan sublimación","Sí, ofrecemos sublimación en camisetas, tazas, cojines, rompecabezas y más."),
+        ("hacen uniformes","Sí, realizamos uniformes deprotivos personalizados."),
+        ("hacen impresión en gran formato","Sí, imprimimos lonas, vinilos adhesivos, banners y materiales publicitarios."),
+        ("qué materiales utilizan","Utilizamos materiales de alta calidad que garantizan durabilidad y excelente acabado."),
+        ("puedo recoger mi pedido en tienda","Sí, puedes recogerlo directamente en nuestra sucursal una vez esté listo."),
+        ("qué garantía ofrecen","Garantizamos la calidad de cada producto. Si algo no cumple con tus expectativas, lo revisamos contigo."),
+        ("gracias","¡Gracias a ti! Estamos encantados de poder ayudarte."),
+        ("adios","¡Hasta luego! Esperamos volver a contactarnos nuevamente"),
+        ("hasta luego","¡Nos vemos pronto! Gracias por elegirnos."),
+        ("me pueden asesorar con un diseño","Por supuesto, nuestro equipo puede ayudarte a mejorar o adaptar tu diseño para la impresión."),
+        ("qué diferencia hay entre sublimación y vinilo","La sublimación se usa en telas claras y de poliéster, mientras que el vinilo es ideal para cualquier color o tipo de prenda."),
+        ("imprimen fotografías","Sí, imprimimos fotografías en camisetas, tazas, lienzos y más."),
+        ("hacen uniformes personalizados","Sí, confeccionamos y estampamos uniformes para empresas, colegios y equipos deportivos."),
+        ("qué tamaño máximo pueden imprimir","Podemos imprimir hasta tamaño tabloide (A3) en prendas y gran formato en materiales publicitarios."),
+        ("hacen promociones","Sí, tenemos promociones periódicas. Puedes seguirnos en redes para enterarte de las ofertas actuales.")
+
+        
+    ]
+    model, vectorizer, unique_answers= buid_and_train_model(training_data)
+    print("chatbot supervisado listo, escribe salir para terminar")
+
+    while True:
+        user = input("tu: ").strip()
+        if user.lower() in {"salir","exit","quit"}:
+            print("bot: !hasta pronto¡")
+            break
+        response = predict_answer(model, vectorizer, unique_answers, user)
+        print("bot:", response)
