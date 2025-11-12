@@ -1,5 +1,22 @@
+from flask import Flask, render_template, request, jsonify
 from chatbot.data import training_data
 from chatbot.model import buid_and_train_model, predict_answer, load_model
+
+app = Flask(__name__)
+
+model, vectorizer, unique_answers = load_model()
+if model is None:
+      model, vectorizer, unique_answers=buid_and_train_model(training_data)
+@app.route("/")
+def home():
+    return render_template("index.html")
+@app.route("/chat", methods=['POST'])
+def chat():
+    user_text = request.form.get("message","")
+    if not user_text.strip():
+        return jsonify(response="Por favor escriba algo 🥵")
+    response = predict_answer(model, vectorizer, unique_answers, user_text)
+    return jsonify(response=response) 
 
 def chat(model, vectorizer, unique_answers):
     """Inicia el modelo de conversación"""
@@ -11,9 +28,7 @@ def chat(model, vectorizer, unique_answers):
             break
         response = predict_answer(model, vectorizer, unique_answers, user)
         print("bot:", response)
-        
-        
-        
+              
 def main():
     # Intentar cargar el modelo
     model, vectorizer, unique_answers = load_model()
@@ -39,8 +54,7 @@ def main():
             break
         else:
             print("\n ❌opcion no vbalida. intenta nuevamente")
-            
-         
+       
 if __name__ == "__main__":
-    main()
+    app.run(host = '0.0.0.0', port=5000)
     
