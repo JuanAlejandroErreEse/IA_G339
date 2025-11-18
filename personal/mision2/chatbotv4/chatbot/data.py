@@ -3,7 +3,7 @@ training_data = [
         ("como estás","Estoy Bien, gracias por preguntar"),
         ("Tu nombre","Soy un chatbot de ejemplo, pero me puedes llamar charlaia"),
         ("con quien hablo","Soy un chatbot de ejemplo, pero puedo ayudarete en cualquier tarea que requieras"),
-        ("buenos días","¡Buenos días! Gracias por comunicarte con [subliminal Personalizados]. ¿en q    ue podemos ayudarte?"),
+        ("buenos días","¡Buenos días! Gracias por comunicarte con [subliminal Personalizados]. ¿en que podemos ayudarte?"),
         ("buenas tardes","¡Buenas tardes! Será un gusto ayudarte con tus pedidos de impresión o estampado."),
         ("buenas noches","¡Buenas noches! Gracias por contactarnos, cuéntame, ¿qué tipo de servicio necesitas?"),
         ("como estás","Estoy muy bien, gracias por preguntar. ¿Cómo puedo ayudarte el dia de hoy?"),
@@ -40,7 +40,8 @@ training_data = [
         ("imprimen fotografías","Sí, imprimimos fotografías en camisetas, tazas, lienzos y más."),
         ("hacen uniformes personalizados","Sí, confeccionamos y estampamos uniformes para empresas, colegios y equipos deportivos."),
         ("qué tamaño máximo pueden imprimir","Podemos imprimir hasta tamaño tabloide (A3) en prendas y gran formato en materiales publicitarios."),
-        ("hacen promociones","Sí, tenemos promociones periódicas. Puedes seguirnos en redes para enterarte de las ofertas actuales.")
+        ("hacen promociones","Sí, tenemos promociones periódicas. Puedes seguirnos en redes para enterarte de las ofertas actuales."),
+        ("busco camisetas personalizadas","con mucho gusto, podemos ofrecerte varios tipos de calidad y diferentres estampados, cuentanos un poco mas sobre que necesitas."),
    
     ]
 
