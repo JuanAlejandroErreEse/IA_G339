@@ -10,7 +10,7 @@ ANSWER_PATH=os.path.join(MODEL_DIR,"answer.pkl")
 
 def buid_and_train_model(train_pairs):
     questions = [q for q, _ in train_pairs]
-    answers = [a for _, a in train_pairs]
+    answers = [a for _, a in train_pairs]   
     vectorizer = CountVectorizer()
     x = vectorizer.fit_transform(questions)
 
